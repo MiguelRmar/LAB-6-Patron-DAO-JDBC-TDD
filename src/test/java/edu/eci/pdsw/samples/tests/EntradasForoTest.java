@@ -58,8 +58,6 @@ public class EntradasForoTest {
         String comentario = entF.getComentario();
         
         assertEquals("No logro entrar al foro","primera entrada", comentario);
-        
-        
     }
     
 }

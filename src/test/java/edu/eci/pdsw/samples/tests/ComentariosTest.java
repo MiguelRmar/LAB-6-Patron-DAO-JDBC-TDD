@@ -65,7 +65,7 @@ public class ComentariosTest {
         Date fecha = new Date(2016,10 ,30);
         Comentario Com = new Comentario(us,"el foro esta muy interesante ",fecha);
         String Contenido = Com.getContenido();
-        assertEquals("no logro generar el comentario", Contenido); 
+        assertEquals("no logro generar el comentario","el foro esta muy interesante ", Contenido); 
        
                 
     }
