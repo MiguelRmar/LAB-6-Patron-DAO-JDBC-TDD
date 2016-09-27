@@ -19,6 +19,8 @@ package edu.eci.pdsw.samples.tests;
 import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
+import edu.eci.pdsw.samples.services.ServiciosForo;
 import java.sql.Date;
 import static jdk.nashorn.internal.objects.NativeRegExp.test;
 import org.junit.Before;
@@ -52,21 +54,25 @@ public class ComentariosTest {
         
         */
     }
+    private ServiciosForo crear;
     
     @Before
     public void setUp() {
+        crear = crear.getInstance();
+        
     }
     
 
     
     @Test
-    public void NuevaRespuestaTest(){
-        Usuario us = new Usuario("miguel@gmail.com","UsuarioX");
-        Date fecha = new Date(2016,10 ,30);
-        Comentario Com = new Comentario(us,"el foro esta muy interesante ",fecha);
-        String Contenido = Com.getContenido();
-        assertEquals("no logro generar el comentario","el foro esta muy interesante ", Contenido); 
-       
+    public void UsuarioTest(){
+      int identificador=1;
+        try {
+            crear.consultarEntradaForo(identificador);
+            fail();
+        } catch (ExcepcionServiciosForos e) {
+            assertTrue("El usuario no coincide con el identificador"+ identificador, true);
+        }
                 
     }
     
