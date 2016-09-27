@@ -71,9 +71,9 @@ public abstract class ServiciosForo {
 
     /**
      * Agrega una respuesta a un foro determinado
-     * @param idforo identificador de la entredaForo a la cual se agregara
+     * @param idforo identificador de la entradaForo a la cual se agregará
      * la respuesta
-     * @param c el comentario a ser agregado
+     * @param c el comentario que va a  ser agregado
      * @throws ExcepcionServiciosForos si el comentario no tiene asociado un
      * usuario
      */
@@ -82,7 +82,7 @@ public abstract class ServiciosForo {
     
     /**
      * Consulta un usuario registrado
-     * @param email el correo con el cual el usuario se registro
+     * @param email el correo con el cual el usuario se registró
      * @return el Usuario
      * @throws ExcepcionServiciosForos si no hay usuarios asociados al correo
      * indicado
