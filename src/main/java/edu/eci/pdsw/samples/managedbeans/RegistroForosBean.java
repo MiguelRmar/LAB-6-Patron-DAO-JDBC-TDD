@@ -23,7 +23,6 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -39,37 +38,51 @@ import javax.enterprise.context.SessionScoped;
 public class RegistroForosBean implements Serializable{
     
     private final ServiciosForo sp=ServiciosForo.getInstance();
-    private int idForo;
+    private int idForo =0;
+    private String NombreForo;
+    private String PreguntaForo;
     private Set<Comentario> respuestas;
     private Usuario usu = new Usuario("miguel.rojas-ma@mail.escuelaing.edu.co","Miguel Rojas");
     private Comentario com;
-    private Date fecha = new Date(2016,9,27);
     private String comentario;
     
-    public void setidForo(int num){
+    public String getTituloForo() throws ExcepcionServiciosForos{
+        return sp.consultarEntradaForo(idForo).getTitulo();
+    }
+    
+    public String getPregunta() throws ExcepcionServiciosForos{
+        return sp.consultarEntradaForo(idForo).getComentario();
+    }
+    
+    public void setNombreForo(String nombre){
+        this.NombreForo = nombre;
+    }
+    
+    public String getNombreForo(){
+        return this.NombreForo;
+    }
+    
+    public void setPreguntaForo(String pregunta){
+        this.PreguntaForo = pregunta;
+    }
+    
+    public String getPreguntaForo(){
+        return this.PreguntaForo;
+    }
+    
+    public void setIdForo(int num){
         this.idForo = num; 
     }
     
-    public int getidForo(){
+    public int getIdForo(){
         return this.idForo;
     }
     
-    public void RespuestasForo() throws ExcepcionServiciosForos {
-        respuestas = sp.consultarEntradaForo(1).getRespuestas();
+    public Set<Comentario> getRespuestasForo() throws ExcepcionServiciosForos {
+        respuestas = sp.consultarEntradaForo(idForo).getRespuestas();
+        return respuestas;
     }
      
-    public String getUsuarioRespuestasForo(){
-        return respuestas.iterator().next().getAutor().getNombre();
-    }
-    
-    public String getRespuestasForo(){
-        return respuestas.iterator().next().getContenido();
-    }
-    
-    public Date getFechaRespuestasForo(){
-        return respuestas.iterator().next().getFechayHora();
-    }
-    
     public String getRespuesta(){
         return this.comentario;
     }
@@ -79,8 +92,9 @@ public class RegistroForosBean implements Serializable{
     }
     
     public void agregarRespuesta() throws ExcepcionServiciosForos{
-        com = new Comentario(usu, comentario,fecha);
+        com = new Comentario(usu, comentario,java.sql.Date.valueOf("2016-09-27"));
         sp.agregarRespuestaForo(idForo, com);
         respuestas = sp.consultarEntradaForo(idForo).getRespuestas();
+        comentario = null;
     }
 }

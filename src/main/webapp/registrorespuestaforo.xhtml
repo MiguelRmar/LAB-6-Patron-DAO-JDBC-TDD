@@ -7,17 +7,22 @@
     <h:body>
         
         <h:form id="formRespuestas">
+            <h3>Foro</h3>
+            <h:outputText value ="#{registroForosBean.tituloForo}"/>
+            <br/>
+            <h:outputText value ="#{registroForosBean.pregunta}"/>
+                          
             <h3>Repuestas</h3>
             
-            <p:dataTable>
+            <p:dataTable var="selectedComentarios" value="#{registroForosBean.respuestasForo}">
                 <p:column headerText="Usuario">
-                    <h:outputText value="#{RegistroForosBean.usuarioRespuesta}" />
+                    <h:outputText value="#{selectedComentarios.autor.nombre}" />
                 </p:column>
                 <p:column headerText="Respuesta">
-                    <h:outputText value="#{RegistroForosBean.respuesta}"/>
+                    <h:outputText value="#{selectedComentarios.contenido}"/>
                 </p:column>
                 <p:column headerText="Fecha Respuesta">
-                    <h:outputText value="#{RegistroForosBean.fechaRespuesta}"/>
+                    <h:outputText value="#{selectedComentarios.fechayHora}"/>
                 </p:column>
                 
             </p:dataTable>
