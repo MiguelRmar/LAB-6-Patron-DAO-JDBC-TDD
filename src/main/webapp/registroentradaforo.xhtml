@@ -5,7 +5,25 @@
     <h:head></h:head>
 
     <h:body>
-        
+        <h:form id="formForos">
+            <h1>Foros Existentes</h1>
+            <p:dataTable var="selectedForos" value="#{registroForosBean.foro}">
+                <p:column headerText="identificador">
+                    <h:outputText value="#{selectedForos.identificador}" />
+                </p:column>
+                <p:column headerText="comentario">
+                    <h:outputText value="#{selectedForos.comentario}" />
+                </p:column>
+                <p:column headerText="Usuario">
+                    <h:outputText value="#{selectedForos.autor.nombre}" />
+                </p:column>
+                <p:column headerText="Usuario">
+                    <h:outputText value="#{selectedForos.autor.nombre}" />
+                </p:column>
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{selectedForos.fechayHora}"/>
+                </p:column>
+            </p:dataTable>
     </h:body>
 
 </html>

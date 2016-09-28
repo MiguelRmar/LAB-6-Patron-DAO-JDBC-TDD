@@ -51,7 +51,7 @@ public class RegistroForosBean implements Serializable{
     private EntradaForo Foro;
     
     
-    public void setForo(EntradaForo Fro){
+    public void setForo(EntradaForo Foro){
         this.Foro = Foro;
         
     }
