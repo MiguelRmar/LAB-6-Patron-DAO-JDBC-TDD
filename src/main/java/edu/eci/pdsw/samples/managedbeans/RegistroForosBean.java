@@ -19,6 +19,7 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
 import java.io.Serializable;
@@ -33,13 +34,17 @@ import javax.enterprise.context.SessionScoped;
  *
  * @author hcadavid
  */
-@ManagedBean (name="RegistroForosBean")
+@ManagedBean
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
-    private ServiciosForo sp=ServiciosForo.getInstance();
+    private final ServiciosForo sp=ServiciosForo.getInstance();
     private int idForo;
     private Set<Comentario> respuestas;
+    private Usuario usu = new Usuario("miguel.rojas-ma@mail.escuelaing.edu.co","Miguel Rojas");
+    private Comentario com;
+    private Date fecha = new Date(2016,9,27);
+    private String comentario;
     
     public void setidForo(int num){
         this.idForo = num; 
@@ -50,18 +55,32 @@ public class RegistroForosBean implements Serializable{
     }
     
     public void RespuestasForo() throws ExcepcionServiciosForos {
-        respuestas = sp.consultarEntradaForo(0).getRespuestas();
+        respuestas = sp.consultarEntradaForo(1).getRespuestas();
     }
      
-    public String getUsuarioRespuesta(){
+    public String getUsuarioRespuestasForo(){
         return respuestas.iterator().next().getAutor().getNombre();
     }
     
-    public String getRespuesta(){
+    public String getRespuestasForo(){
         return respuestas.iterator().next().getContenido();
     }
     
-    public Date getFechaRespuesta(){
+    public Date getFechaRespuestasForo(){
         return respuestas.iterator().next().getFechayHora();
+    }
+    
+    public String getRespuesta(){
+        return this.comentario;
+    }
+     
+    public void setRespuesta(String comentarioI){
+        this.comentario = comentarioI;
+    }
+    
+    public void agregarRespuesta() throws ExcepcionServiciosForos{
+        com = new Comentario(usu, comentario,fecha);
+        sp.agregarRespuestaForo(idForo, com);
+        respuestas = sp.consultarEntradaForo(idForo).getRespuestas();
     }
 }

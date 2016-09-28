@@ -9,7 +9,7 @@
         <h:form id="formRespuestas">
             <h3>Repuestas</h3>
             
-            <p:dataTable var="res" value="#{RegistroForosBean}">
+            <p:dataTable>
                 <p:column headerText="Usuario">
                     <h:outputText value="#{RegistroForosBean.usuarioRespuesta}" />
                 </p:column>
@@ -23,7 +23,11 @@
             </p:dataTable>
             
             <br/>            
-            <p:inputTextarea rows="6" cols="33" />
+            <p:inputTextarea rows="6" cols="33" value="#{registroForosBean.respuesta}" />
+            <br/>
+            <br/>
+            <p:commandButton value="Ingresar Respuesta" update="formRespuestas" actionListener="#{registroForosBean.agregarRespuesta()}"/>
+            
         </h:form>
         
     </h:body>
