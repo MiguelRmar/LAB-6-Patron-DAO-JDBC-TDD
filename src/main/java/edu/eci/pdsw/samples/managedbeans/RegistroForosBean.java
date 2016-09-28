@@ -49,16 +49,9 @@ public class RegistroForosBean implements Serializable{
     private Comentario com;
     private String comentario;
     private EntradaForo Foro;
-<<<<<<< Upstream, based on origin/master
     
     
     public void setForo(EntradaForo Fro){
-=======
-   
-    
-    
-    public void setForo(EntradaForo Foro){
->>>>>>> badea9d "Registro entrada foro"
         this.Foro = Foro;
         
     }
@@ -126,5 +119,4 @@ public class RegistroForosBean implements Serializable{
         respuestas = sp.consultarEntradaForo(idForo).getRespuestas();
         comentario = null;
     }
-    
 }
