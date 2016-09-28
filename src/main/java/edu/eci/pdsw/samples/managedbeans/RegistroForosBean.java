@@ -22,7 +22,9 @@ import edu.eci.pdsw.samples.entities.EntradaForo;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
+import java.util.List;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +35,7 @@ import javax.enterprise.context.SessionScoped;
  *
  * @author hcadavid
  */
+
 @ManagedBean
 @SessionScoped
 public class RegistroForosBean implements Serializable{
@@ -45,6 +48,25 @@ public class RegistroForosBean implements Serializable{
     private Usuario usu = new Usuario("miguel.rojas-ma@mail.escuelaing.edu.co","Miguel Rojas");
     private Comentario com;
     private String comentario;
+    private EntradaForo Foro;
+    
+    
+    public void setForo(EntradaForo Fro){
+        this.Foro = Foro;
+        
+    }
+    
+    public EntradaForo getForo(){
+        return Foro;
+    }
+    
+    public List<EntradaForo> getForos() throws ExcepcionServiciosForos{
+        return sp.consultarEntradasForo();
+    }
+    
+    public void newForo(String email, String nombre, int identificador, Usuario autor, String comentario, String titulo, Date fechayHora) throws ExcepcionServiciosForos{
+        sp.registrarNuevaEntradaForo(new EntradaForo(identificador, sp.consultarUsuario(email), comentario, titulo, fechayHora));
+    }
     
     public String getTituloForo() throws ExcepcionServiciosForos{
         return sp.consultarEntradaForo(idForo).getTitulo();

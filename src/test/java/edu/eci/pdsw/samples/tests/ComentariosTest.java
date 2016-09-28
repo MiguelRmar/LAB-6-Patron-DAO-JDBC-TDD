@@ -52,6 +52,10 @@ public class ComentariosTest {
         TIPO: NORMAL
         SE ESPERA UN ERROR: SI() NO(X)
         
+        CLASE DE EQUIVALENCIA 4:ELUSUARIO QUE AGREGA ELCOMENTARIO TIENE UNA FECHA ACTUAL
+        TIPO: NORMAL
+        SE ESPERA UN ERROR:SI() NO(X)
+         
         */
     }
     private ServiciosForo crear;

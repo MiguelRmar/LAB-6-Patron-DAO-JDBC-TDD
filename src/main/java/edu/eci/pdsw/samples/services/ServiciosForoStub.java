@@ -62,7 +62,11 @@ public class ServiciosForoStub extends ServiciosForo{
             f.setIdentificador(foroidcount);            
             foroidcount++;
         }
-        foros.put(f.getIdentificador(), f);        
+        if(f.getAutor().equals(null)){
+            throw new ExcepcionServiciosForos("No hay unusuarioque este asociado");
+        }
+        foros.put(f.getIdentificador(), f); 
+        
     }
 
     @Override
