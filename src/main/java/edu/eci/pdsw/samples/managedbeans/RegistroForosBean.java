@@ -17,20 +17,51 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 
+import edu.eci.pdsw.samples.entities.Comentario;
+import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
+import java.sql.Date;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author hcadavid
  */
-@ManagedBean
+@ManagedBean (name="RegistroForosBean")
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
-    ServiciosForo sp=ServiciosForo.getInstance();
+    private ServiciosForo sp=ServiciosForo.getInstance();
+    private int idForo;
+    private Set<Comentario> respuestas;
     
+    public void setidForo(int num){
+        this.idForo = num; 
+    }
     
+    public int getidForo(){
+        return this.idForo;
+    }
+    
+    public void RespuestasForo() throws ExcepcionServiciosForos {
+        respuestas = sp.consultarEntradaForo(0).getRespuestas();
+    }
+     
+    public String getUsuarioRespuesta(){
+        return respuestas.iterator().next().getAutor().getNombre();
+    }
+    
+    public String getRespuesta(){
+        return respuestas.iterator().next().getContenido();
+    }
+    
+    public Date getFechaRespuesta(){
+        return respuestas.iterator().next().getFechayHora();
+    }
 }

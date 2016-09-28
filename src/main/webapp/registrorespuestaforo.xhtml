@@ -6,6 +6,26 @@
 
     <h:body>
         
+        <h:form id="formRespuestas">
+            <h3>Repuestas</h3>
+            
+            <p:dataTable var="res" value="#{RegistroForosBean}">
+                <p:column headerText="Usuario">
+                    <h:outputText value="#{RegistroForosBean.usuarioRespuesta}" />
+                </p:column>
+                <p:column headerText="Respuesta">
+                    <h:outputText value="#{RegistroForosBean.respuesta}"/>
+                </p:column>
+                <p:column headerText="Fecha Respuesta">
+                    <h:outputText value="#{RegistroForosBean.fechaRespuesta}"/>
+                </p:column>
+                
+            </p:dataTable>
+            
+            <br/>            
+            <p:inputTextarea rows="6" cols="33" />
+        </h:form>
+        
     </h:body>
 
 </html>
