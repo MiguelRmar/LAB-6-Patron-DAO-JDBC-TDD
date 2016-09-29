@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
         <h:form id="formForos">
             <h1>Foros Existentes</h1>
-            <p:dataTable var="selectedForos" value="#{registroForosBean.foro}">
+            <p:dataTable var="selectedForos" value="#{registroForosBean.foros}">
+                <p:column>
+                    <p:button value="Seleccionar Foro">
+                        <f:param name="productId" value="#{registroForosBean.idForo}" />
+                    </p:button>
+                </p:column>
                 <p:column headerText="identificador">
                     <h:outputText value="#{selectedForos.identificador}" />
                 </p:column>
@@ -24,6 +30,10 @@
                     <h:outputText value="#{selectedForos.fechayHora}"/>
                 </p:column>
             </p:dataTable>
+            <br/>
+            <p:commandButton value="Ver Respuestas" actionListener="registrorespuestaforo.xhtml"/>
+            
+        </h:form>
     </h:body>
 
 </html>
