@@ -16,7 +16,7 @@
  */
 package edu.eci.pdsw.samples.tests;
 
-import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
+
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;

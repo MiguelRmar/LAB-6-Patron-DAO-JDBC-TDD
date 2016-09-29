@@ -22,7 +22,7 @@ import java.sql.Date;
  *
  * @author hcadavid
  */
-public class Comentario {
+public class Comentario  {
 
     private Usuario autor;
     
