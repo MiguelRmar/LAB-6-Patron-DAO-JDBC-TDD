@@ -104,7 +104,7 @@ public class JDBCExample {
      * @param codigoPedido el código del pedido
      * @return 
      */
-    public static List<String> nombresProductosPedido(Connection con, int codigoPedido){
+    public static List<String> nombresProductosPedido(Connection con, int codigoPedido) throws SQLException{
         List<String> np=new LinkedList<>();
         
         //Crear prepared statement
@@ -130,7 +130,7 @@ public class JDBCExample {
      * @param codigoPedido código del pedido cuyo total se calculará
      * @return el costo total del pedido (suma de: cantidades*precios)
      */
-    public static int valorTotalPedido(Connection con, int codigoPedido){
+    public static int valorTotalPedido(Connection con, int codigoPedido) throws SQLException{
         
         //Crear prepared statement
         PreparedStatement ps= con.prepareStatement("SELECT SUM(prod.precio*dp.cantidad) as valorPedido FROM ORD_DETALLES_PEDIDO AS dp INNER JOIN ORD_PRODUCTOS as prod ON dp.producto_fk=prod.codigo WHERE dp.pedido_fk=?");
