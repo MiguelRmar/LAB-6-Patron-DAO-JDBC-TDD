@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 import junit.framework.Assert;
+import org.junit.Test;
 
 /**
  *
@@ -31,6 +32,7 @@ public class DaoUsuarioTest {
     SE ESPERA UN ERROR:SI(X) NO()
     */
     
+    @Test
     public void UsuarioNuevotest() throws IOException, PersistenceException{
         InputStream input = null;
         input = ClassLoader.getSystemResourceAsStream("applicationconfig_test.properties");
@@ -53,6 +55,7 @@ public class DaoUsuarioTest {
         }
     }
     
+    @Test
     public void UsuarioExistentetest() throws IOException, PersistenceException{
         InputStream input = null;
         input = ClassLoader.getSystemResourceAsStream("applicationconfig_test.properties");

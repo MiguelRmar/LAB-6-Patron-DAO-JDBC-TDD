@@ -32,12 +32,39 @@ public class JDBCDaoUsuario implements DaoUsuario {
         
     @Override
     public Usuario load(String email, String name) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        PreparedStatement ps;
+        
+        
+        try {
+            String consulta ="select usu.email, usu.nombre";
+            ps=con.prepareCall(consulta);
+            ps.setString(1, email);
+            ps.setString(2, name);
+            ResultSet executeQuery = ps.executeQuery();
+            Usuario u=null;
+            String e = email;
+            String nombre= name;
+            u = new Usuario (e, nombre);
+            return u;
+        } catch (SQLException ex) {
+            throw new PersistenceException("An error ocurred while loading "+email,ex);
+        }
+        }
 
     @Override
     public void save(Usuario u) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            PreparedStatement ps = null;
+            con.setAutoCommit(false);
+            String consulta = "INSERT INTO USUARIOS VALUES ( "+ u.getEmail()+", '"+u.getNombre()+"', ?, ?)";
+            ps = con.prepareCall(consulta);
+            ps.setString(1, u.getEmail());
+            ps.setString(2, u.getNombre());
+            int res= ps.executeUpdate();
+        }
+        catch (SQLException e) {
+        }
     }
 
     @Override
