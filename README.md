@@ -1,2 +1,2 @@
-# Lab-5
-CI: Administracion de la configuración
+#LAB-6-Patron-DAO-JDBC-TDD
+
